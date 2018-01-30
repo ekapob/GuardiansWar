@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{465704D8-50A2-A7DB-66C9-6CFA4AD9C716}</ProjectGuid>
+    <ProjectGuid>{FA782C4C-3D08-9305-AE8D-2A75FAAAAC1B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
@@ -434,13 +434,13 @@
  <HintPath>D:/Program Files (x86)/Unity 5.5.2/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
  <Reference Include="Photon3Unity3D">
- <HintPath>D:/Work/HW/Game Dev/Guardians War/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+ <HintPath>C:/Users/ekapo/Documents/GitHub/GuardiansWar/Assets/Plugins/Photon3Unity3D.dll</HintPath>
  </Reference>
  <Reference Include="UTNotifications">
- <HintPath>D:/Work/HW/Game Dev/Guardians War/Assets/Plugins/UTNotifications.dll</HintPath>
+ <HintPath>C:/Users/ekapo/Documents/GitHub/GuardiansWar/Assets/Plugins/UTNotifications.dll</HintPath>
  </Reference>
  <Reference Include="websocket-sharp">
- <HintPath>D:/Work/HW/Game Dev/Guardians War/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+ <HintPath>C:/Users/ekapo/Documents/GitHub/GuardiansWar/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

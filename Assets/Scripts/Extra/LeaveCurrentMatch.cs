@@ -9,5 +9,6 @@ public class LeaveCurrentMatch : MonoBehaviour {
 		PlayerNetwork.Instance.joinRoomNum = 0;
 		PlayerNetwork.Instance.PlayersInGame = 0;
 		PhotonNetwork.LoadLevel (2);
+		MotherScript.Instance.currentGameMode = 0;
 	}
 }

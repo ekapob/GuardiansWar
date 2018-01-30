@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 
 	private int mode = 0;
-	private int side = 0;
+	private int sidepick = 0;
 	[SerializeField]
 	private GameObject burn;
 	private bool moveAble;
@@ -15,6 +15,7 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 	private Vector3 TargetPosition;
 	private Quaternion TargetRotation;
 	public bool m_bombStat = false;
+	private int side = 0;
 
 	// Use this for initialization
 	private void Awake () {
@@ -39,10 +40,17 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 					toGame = true;
 				} else if (toGame) {
 					photonView.RPC ("RPC_SideSend", PhotonTargets.All); 
-					if (PhotonNetwork.isMasterClient) {
-						CanvasGameButton.Instance.CalculateMode ();// CALCULATE SIDE AND MODE
-					}
-					Invoke ("MoveToGameScene", 2.5f);
+					//if (PhotonNetwork.isMasterClient) {
+						CanvasGameButton.Instance.CalculateMode ();// CALCULATE MODE
+						CanvasGameButton.Instance.CalculateSide ();// CALCULATE SIDE
+						photonView.RPC ("RPC_ModePlay", PhotonTargets.All); 
+						photonView.RPC ("RPC_SidePlay", PhotonTargets.All); 
+					//}
+					side = PlayerNetwork.Instance.joinRoomNum;
+					CanvasGameButton.Instance.clockCount.text = mode.ToString();
+					MotherScript.Instance.currentGameMode = mode;
+					PlayerNetwork.Instance.PlayersInGame = 0;
+					PhotonNetwork.LoadLevel (4);
 				}
 			}
 		}
@@ -84,11 +92,11 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 			mode = 0;
 		}
 		if (other.tag == "Side1") {
-			side = 1;
+			sidepick = 1;
 		} else if (other.tag == "Side2") {
-			side = 2;
+			sidepick = 2;
 		} else if (other.tag == "SideRand") {
-			side = 0;
+			sidepick = 0;
 		}
 	}
 
@@ -127,11 +135,19 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 	}
 	[PunRPC]
 	private void RPC_SideSend(){
-		CanvasGameButton.Instance.side [PlayerNetwork.Instance.joinRoomNum] += side;
+		CanvasGameButton.Instance.side [PlayerNetwork.Instance.joinRoomNum - 1] = sidepick;
 	}
 
-	void MoveToGameScene(){
-		CanvasGameButton.Instance.CalculateSide ();
-		//PhotonNetwork.LoadLevel (4);
+	[PunRPC]
+	private void RPC_ModePlay(){
+		mode = CanvasGameButton.Instance.playMode;
 	}
+
+	[PunRPC]
+	private void RPC_SidePlay(){
+		side = CanvasGameButton.Instance.side [PlayerNetwork.Instance.joinRoomNum - 1];
+	}
+
+
+
 }

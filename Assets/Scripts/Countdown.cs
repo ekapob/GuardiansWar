@@ -14,6 +14,9 @@ public class Countdown : MonoBehaviour {
 	private bool stat1;
 	// Use this for initialization
 	void OnEnable () {
+		showNum [0].SetActive (false);
+		showNum [1].SetActive (false);
+		showNum [2].SetActive (false);
 		CurrentRoomCanvas.Instance.startStat = true;
 		Instance = this;
 		stat3 = true;

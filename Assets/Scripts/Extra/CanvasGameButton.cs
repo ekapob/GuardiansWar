@@ -18,14 +18,14 @@ public class CanvasGameButton : MonoBehaviour {
 	public Text clockCount;
 	public float timer = 10f;
 	private int timeToStr = 10;
-	public List<int> mode = new List<int> ();// 1 : Random | 2 : Ah Base is on FIRE | 3 : KilL'a BosSSS
-	public int[] side;
+	public int[] mode = new int[3];// 1 : Random | 2 : Ah Base is on FIRE | 3 : KilL'a BosSSS
 	[SerializeField]
 	private GameObject kickPlayer; 
 	private int limitPlayer;
 	public bool kickKeyLock;
 	public int playMode;// 1 : Ah Base is on FIRE | 2 : KilL'a BosSSS
 	public int playSide;// 1 : Knight | 2 : Monster
+	public int[] side;
 
 	// Use this for initialization
 	void Awake () {
@@ -74,7 +74,6 @@ public class CanvasGameButton : MonoBehaviour {
 			playMode = 2;
 		} else {
 			int randMode = Random.Range (1, 100);
-			Debug.Log ("Random : " + randMode);
 			if (randMode % 2 == 1) {
 				playMode = 1;
 			} else {
@@ -82,6 +81,14 @@ public class CanvasGameButton : MonoBehaviour {
 			}
 		}
 	}
+
+
+	private void TimerText(){
+		timer -= Time.deltaTime;
+		timeToStr = (int)timer;
+		clockCount.text = timeToStr.ToString ();
+	}
+
 	public void CalculateSide(){
 		//int[] use = new int[PhotonNetwork.playerList.Length];
 		int side1 = 0;
@@ -91,8 +98,7 @@ public class CanvasGameButton : MonoBehaviour {
 		while (!toGameScene) {
 			int kni = 0;
 			int mon = 0;
-			for (int i = 0; i < limitPlayer; i++) {
-				Debug.Log ("Side " + i + " : " + side[i]);
+			for (int i = 0; i < PhotonNetwork.playerList.Length; i++) {
 				if (side [i] == 1) {
 					kni++;
 				} 
@@ -100,24 +106,21 @@ public class CanvasGameButton : MonoBehaviour {
 					mon++;
 				}
 			}
-			Debug.Log ("Kni : " + kni + " Mon : " + mon);
 
-			for (int i = 0; i < limitPlayer; i++) {
+			for (int i = 0; i < PhotonNetwork.playerList.Length; i++) {
 				if (side [i] == 0) {
-					if (kni < limitPlayer / 2) {
+					if (kni < PhotonNetwork.playerList.Length / 2) {
 						side [i] = 1;
 						kni++;
 						continue;
 					}
-					if (mon < limitPlayer / 2) {
+					if (mon < PhotonNetwork.playerList.Length / 2) {
 						side [i] = 2;
 						mon++;
 						continue;
 					}
 				}
 			}
-
-
 			//check
 			for (int i = 0; i < limitPlayer && !toGameScene; i++) {
 				if (side [i] == 0) {
@@ -128,34 +131,7 @@ public class CanvasGameButton : MonoBehaviour {
 					break;
 				}
 			}
-		}
-		if (toGameScene) {
-			Debug.Log ("Move to game scene");
-		} else {
-			Debug.Log ("Bug ja");
-		}
-	}
 
-	/*
-	if (side0 > 0) {
-		for (int i = 0; i < side.Length; i++) {
-			Debug.Log ("S[i] " + i + " : " + side [i]);
-			if (side [i] == 0) {
-				if (side1 < limitPlayer/2) {
-					side [i] = 1;
-					side1++;
-				} else if (side2 < limitPlayer/2) {
-					side [i] = 2;
-					side2++;
-				}
-			}
 		}
-	}
-	*/
-
-	private void TimerText(){
-		timer -= Time.deltaTime;
-		timeToStr = (int)timer;
-		clockCount.text = timeToStr.ToString ();
 	}
 }

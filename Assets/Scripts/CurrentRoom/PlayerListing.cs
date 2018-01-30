@@ -22,6 +22,10 @@ public class PlayerListing : MonoBehaviour {
 
 	public void ApplyPhotonPlayer(PhotonPlayer photonPlayer){
 		PhotonPlayer = photonPlayer;
+		PlayerName.text = photonPlayer.NickName;
+		if (PhotonNetwork.isMasterClient) {//
+			PlayerName.text = MotherScript.Instance.inGameName;
+		}
 		PlayerName.text = MotherScript.Instance.inGameName;
 		StartCoroutine (C_ShowPing ());
 	}

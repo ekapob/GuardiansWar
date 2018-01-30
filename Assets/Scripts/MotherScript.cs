@@ -10,6 +10,7 @@ public class MotherScript : MonoBehaviour {
 	public string inGameName;
 	public float soundMusic;
 	public float soundSfx;
+	public int currentGameMode;
 	// Use this for initialization
 	void Start () {
 		Instance = this;
@@ -20,7 +21,7 @@ public class MotherScript : MonoBehaviour {
 			inGameName = "Distul#" + Random.Range (1000, 9999);
 			Save ();
 		}
-		Debug.Log (inGameName);
+		Debug.Log (Application.persistentDataPath);
 	}
 	Encryptor enc = new Encryptor();
 	public void Save()

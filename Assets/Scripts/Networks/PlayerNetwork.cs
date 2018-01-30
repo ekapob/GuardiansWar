@@ -39,6 +39,13 @@ public class PlayerNetwork : MonoBehaviour {
 				NonMasterLoadedGame ();
 			}
 		}	
+		if (scene.name == "Gameplay") {
+			if (PhotonNetwork.isMasterClient) {
+				MasterLoadedGamePlay ();
+			} else {
+				NonMasterLoadedGame ();
+			}
+		}
 	}
 
 	private void Update(){
@@ -50,24 +57,39 @@ public class PlayerNetwork : MonoBehaviour {
 
 
 	}
-
+	//Scene 3
 	private void MasterLoadedGame(){
 		PhotonView.RPC ("RPC_LoadedGameScene", PhotonTargets.MasterClient,PhotonNetwork.player);
 		PhotonView.RPC ("RPC_LoadGameOther", PhotonTargets.Others);
 	}
 
+	//Scene 4
+	private void MasterLoadedGamePlay(){
+		PhotonView.RPC ("RPC_LoadedGamePlayScene", PhotonTargets.MasterClient,PhotonNetwork.player);
+		PhotonView.RPC ("RPC_LoadGamePlayOther", PhotonTargets.Others);
+	}
+	//Scene 3
 	private void NonMasterLoadedGame(){
 		PhotonView.RPC ("RPC_LoadedGameScene", PhotonTargets.MasterClient,PhotonNetwork.player);
 	}
+	//Scene 4
+	private void NonMasterLoadedGamePlay(){
+		PhotonView.RPC ("RPC_LoadedGamePlayScene", PhotonTargets.MasterClient,PhotonNetwork.player);
+	}
 
 
-	//Bring all player to game 
+	//Bring all player to game 3
 	[PunRPC]
 	private void RPC_LoadGameOther(){
 		PhotonNetwork.LoadLevel (3);
 	}
+	//Bring all player to game 4
+	[PunRPC]
+	private void RPC_LoadGamePlayOther(){
+		PhotonNetwork.LoadLevel (4);
+	}
 		
-
+	//Scene 3
 	[PunRPC]
 	private void RPC_LoadedGameScene(PhotonPlayer photonPlayer){
 		//PlayerManagement.Instance.AddPlayerStats (photonPlayer);
@@ -77,20 +99,14 @@ public class PlayerNetwork : MonoBehaviour {
 			PhotonView.RPC ("RPC_CreatePlayer",PhotonTargets.All);
 		}
 	}
-
-	public void NewHealth(PhotonPlayer photonPlayer,int health){
-		PhotonView.RPC ("RPC_NewHealth",photonPlayer,health);
-	}
-
+	//Scene 4
 	[PunRPC]
-	private void RPC_NewHealth(int health){
-		if (CurrentPlayer == null) {
-			return;
-		}
-		if (health <= 0) {
-			PhotonNetwork.Destroy (CurrentPlayer.gameObject);
-		} else {
-			CurrentPlayer.Health = health;
+	private void RPC_LoadedGamePlayScene(PhotonPlayer photonPlayer){
+		//PlayerManagement.Instance.AddPlayerStats (photonPlayer);
+		PlayersInGame++;
+		if (PlayersInGame == PhotonNetwork.playerList.Length) {
+			print ("All player are in the game scene.");
+			//create player cam
 		}
 	}
 
