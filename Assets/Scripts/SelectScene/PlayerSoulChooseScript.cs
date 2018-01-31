@@ -48,7 +48,8 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 					//}
 					side = PlayerNetwork.Instance.joinRoomNum;
 					CanvasGameButton.Instance.clockCount.text = mode.ToString();
-					MotherScript.Instance.currentGameMode = mode;
+					//MotherScript.Instance.currentGameMode = mode;
+					MotherScript.Instance.currentGameMode = 1;
 					PlayerNetwork.Instance.PlayersInGame = 0;
 					PhotonNetwork.LoadLevel (4);
 				}

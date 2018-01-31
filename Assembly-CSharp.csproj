@@ -202,10 +202,12 @@
      <Compile Include="Assets\Scripts\CurrentRoom\PlayerListing.cs" />
      <Compile Include="Assets\Scripts\Extra\CanvasGameButton.cs" />
      <Compile Include="Assets\Scripts\Extra\LeaveCurrentMatch.cs" />
+     <Compile Include="Assets\Scripts\Extra\PauseAndExitButton.cs" />
      <Compile Include="Assets\Scripts\Extra\PlayerNetworkCam.cs" />
      <Compile Include="Assets\Scripts\GIF\StartAnimation.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Bullet.cs" />
      <Compile Include="Assets\Scripts\Gameplay\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\Canvas\CanvasGameplayControl.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Enemy.cs" />
      <Compile Include="Assets\Scripts\Gameplay\EnemyMovements\P1EnemyMovement.cs" />
      <Compile Include="Assets\Scripts\Gameplay\EnemyMovements\P2EnemyMovement.cs" />
@@ -214,6 +216,7 @@
      <Compile Include="Assets\Scripts\Gameplay\HealUnit.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Manager.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Node.cs" />
+     <Compile Include="Assets\Scripts\Gameplay\NodeControlForPlayer.cs" />
      <Compile Include="Assets\Scripts\Gameplay\NodeUI.cs" />
      <Compile Include="Assets\Scripts\Gameplay\PlayerStats.cs" />
      <Compile Include="Assets\Scripts\Gameplay\Shop.cs" />
