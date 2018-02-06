@@ -57,10 +57,6 @@ public class CameraController : Photon.MonoBehaviour {
 	[PunRPC]
 	private void RPC_SendSideGameplay(){
 		//Bug
-		/*if (MotherScript.Instance.currentGameSide == 1) {
-			CanvasGameplayControl.Instance.knightPlayer++;
-		} else {
-			CanvasGameplayControl.Instance.monsterPlayer++;
-		}*/
+		CanvasGameplayControl.Instance.sidePlayer[MotherScript.Instance.currentGameSide]++;
 	}
 }

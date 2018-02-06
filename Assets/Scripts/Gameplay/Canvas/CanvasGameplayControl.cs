@@ -8,13 +8,10 @@ public class CanvasGameplayControl : MonoBehaviour {
 	public GameObject standbyCam;
 	private int allPlayerInGame;
 	public GameObject loadingImg;
-	public int knightPlayer;
-	public int monsterPlayer;
+	public int[] sidePlayer = new int[2] {0,0};
 
 	// Use this for initialization
 	void Start () {
-		knightPlayer = 0;
-		monsterPlayer = 0;
 		Instance = this;
 		allPlayerInGame = PhotonNetwork.playerList.Length;
 		standbyCam.SetActive (true);

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class P4Spawner : MonoBehaviour {
 
+	public static P4Spawner Instance;
 	public Transform enemy1Prefab;
 	public Transform enemy2Prefab;
 	public Transform enemy3Prefab;
@@ -17,6 +18,11 @@ public class P4Spawner : MonoBehaviour {
 	public Text waveCountdownText;
 
 	private int waveIndex = 0;
+
+	void Start()
+	{
+		Instance = this;
+	}
 
 	void Update()
 	{
