@@ -67,6 +67,7 @@ public class PlayerNetwork : MonoBehaviour {
 	private void MasterLoadedGamePlay(){
 		PhotonView.RPC ("RPC_LoadedGamePlayScene", PhotonTargets.MasterClient,PhotonNetwork.player);
 		PhotonView.RPC ("RPC_LoadGamePlayOther", PhotonTargets.Others);
+		//PhotonView.RPC ("RPC_SendSideGameplay",PhotonTargets.All);
 	}
 	//Scene 3
 	private void NonMasterLoadedGame(){
@@ -124,6 +125,8 @@ public class PlayerNetwork : MonoBehaviour {
 		GameObject obj =  PhotonNetwork.Instantiate (Path.Combine ("Prefabs", "PlayerCam"), PauseAndExitButton.Instance.camSpawnPoint.transform.position,rotate, 0);
 		CurrentPlayer = obj.GetComponent<PlayerMovement> ();
 	}
+
+
 
 
 		

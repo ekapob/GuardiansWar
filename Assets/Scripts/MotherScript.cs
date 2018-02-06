@@ -11,8 +11,11 @@ public class MotherScript : MonoBehaviour {
 	public float soundMusic;
 	public float soundSfx;
 	public int currentGameMode;
+	public int currentGameSide;
 	// Use this for initialization
 	void Start () {
+		currentGameMode = 0;
+		currentGameSide = 0;
 		Instance = this;
 		DontDestroyOnLoad (this);
 		StartCoroutine(W());

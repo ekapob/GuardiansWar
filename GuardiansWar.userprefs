@@ -1,23 +1,23 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Networks\PlayerNetwork.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Gameplay\CameraController.cs">
     <Files>
       <File FileName="Assets\Scripts\CurrentRoom\CurrentRoomCanvas.cs" Line="38" Column="34" />
       <File FileName="Assets\Scripts\Countdown.cs" Line="21" Column="19" />
       <File FileName="Assets\Scripts\Lobby\OptionCanvas.cs" Line="19" Column="44" />
-      <File FileName="Assets\Scripts\MotherScript.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\CurrentRoom\PlayerListing.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Extra\PlayerNetworkCam.cs" Line="5" Column="33" />
       <File FileName="Assets\Scripts\Chat\LobbyChat.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Extra\LeaveCurrentMatch.cs" Line="12" Column="35" />
       <File FileName="Assets\Scripts\Gameplay\Manager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Gameplay\NodeControlForPlayer.cs" Line="17" Column="34" />
-      <File FileName="Assets\Scripts\SelectScene\PlayerSoulChooseScript.cs" Line="52" Column="47" />
-      <File FileName="Assets\Scripts\Extra\PauseAndExitButton.cs" Line="8" Column="34" />
-      <File FileName="Assets\Scripts\Networks\PlayerNetwork.cs" Line="120" Column="33" />
-      <File FileName="Assets\Scripts\Extra\PlayerNetworkCam.cs" Line="15" Column="44" />
-      <File FileName="Assets\Scripts\Extra\CanvasGameButton.cs" Line="38" Column="34" />
-      <File FileName="Assets\Scripts\Gameplay\CameraController.cs" Line="22" Column="4" />
-      <File FileName="Assets\Scripts\Gameplay\Canvas\CanvasGameplayControl.cs" Line="9" Column="17" />
+      <File FileName="Assets\Scripts\MotherScript.cs" Line="13" Column="29" />
+      <File FileName="Assets\Scripts\Networks\PlayerNetwork.cs" Line="16" Column="25" />
+      <File FileName="Assets\Scripts\Extra\CanvasGameButton.cs" Line="14" Column="18" />
+      <File FileName="Assets\Scripts\SelectScene\PlayerSoulChooseScript.cs" Line="45" Column="67" />
+      <File FileName="Assets\Scripts\Extra\PauseAndExitButton.cs" Line="18" Column="35" />
+      <File FileName="Assets\Scripts\Gameplay\Canvas\CanvasGameplayControl.cs" Line="20" Column="31" />
+      <File FileName="Assets\Scripts\Gameplay\CameraController.cs" Line="23" Column="16" />
+      <File FileName="Assets\Scripts\Gameplay\NodeControlForPlayer.cs" Line="15" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

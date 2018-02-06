@@ -50,6 +50,7 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 					CanvasGameButton.Instance.clockCount.text = mode.ToString();
 					//MotherScript.Instance.currentGameMode = mode;
 					MotherScript.Instance.currentGameMode = 1;
+					MotherScript.Instance.currentGameSide = side;
 					PlayerNetwork.Instance.PlayersInGame = 0;
 					PhotonNetwork.LoadLevel (4);
 				}
@@ -148,6 +149,7 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 	private void RPC_SidePlay(){
 		side = CanvasGameButton.Instance.side [PlayerNetwork.Instance.joinRoomNum - 1];
 	}
+
 
 
 

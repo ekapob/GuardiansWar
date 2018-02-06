@@ -14,6 +14,8 @@ public class CameraController : Photon.MonoBehaviour {
 
 	void Start (){
 		PhotonView = GetComponent<PhotonView> ();
+		CanvasGameplayControl.Instance.loadingImg.SetActive (false);
+		photonView.RPC ("RPC_SendSideGameplay",PhotonTargets.All);
 	}
 	void Update ()
 	{
@@ -50,5 +52,15 @@ public class CameraController : Photon.MonoBehaviour {
 		pos.y = Mathf.Clamp (pos.y, minY, maxY);
 
 		transform.position = pos;
+	}
+
+	[PunRPC]
+	private void RPC_SendSideGameplay(){
+		//Bug
+		/*if (MotherScript.Instance.currentGameSide == 1) {
+			CanvasGameplayControl.Instance.knightPlayer++;
+		} else {
+			CanvasGameplayControl.Instance.monsterPlayer++;
+		}*/
 	}
 }
