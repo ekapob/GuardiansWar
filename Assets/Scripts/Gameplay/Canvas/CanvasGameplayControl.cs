@@ -17,7 +17,9 @@ public class CanvasGameplayControl : MonoBehaviour {
 		standbyCam.SetActive (true);
 		if (allPlayerInGame == 2){
 			NodeControlForPlayer.Instance.playerNodeK2.SetActive (true);
+			P1Spawner.Instance.enabled = false;
 			NodeControlForPlayer.Instance.playerNodeM1.SetActive (true);
+			P4Spawner.Instance.enabled = false;
 		} else if (allPlayerInGame == 3) {
 		} else if (allPlayerInGame == 4) {
 			NodeControlForPlayer.Instance.playerNodeK2.SetActive (true);
