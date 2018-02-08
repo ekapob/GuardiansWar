@@ -54,9 +54,31 @@ public class CameraController : Photon.MonoBehaviour {
 		transform.position = pos;
 	}
 
+
+
+
 	[PunRPC]
 	private void RPC_SendSideGameplay(){
 		//Bug
 		CanvasGameplayControl.Instance.sidePlayer[MotherScript.Instance.currentGameSide]++;
 	}
+
+	/*[PunRPC]
+	private void RPC_BuildTurret(TurretBlueprint blueprint)
+	{
+		if(PlayerStats.Money<blueprint.cost)
+		{
+			Debug.Log ("Not enough gold!");
+			return;
+		}
+
+		PlayerStats.Money -= blueprint.cost;
+
+		GameObject _turret = (GameObject)Instantiate (blueprint.prefabs,  GetBuildPosition (), Quaternion.identity);
+		turret = _turret;
+
+		turretBlueprint = blueprint;
+
+		Debug.Log (PlayerStats.Money);
+	}*/
 }

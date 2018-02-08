@@ -18,10 +18,12 @@ public class Node : MonoBehaviour {
 
 	void Start()
 	{
+		
 		buildManager = Manager.instance;
 
 		rend = GetComponent<Renderer> ();
 		startColor = rend.material.color;
+		PhotonView = GetComponent<PhotonView> ();
 	}
 
 	public Vector3 GetBuildPosition()
@@ -42,11 +44,13 @@ public class Node : MonoBehaviour {
 
 		if (!buildManager.CanBuild)
 			return;
-
-		BuildTurret(Manager.instance.GetTurretToBuild());
+		//photonView.RPC ("RPC_BuildTurret", PhotonTargets.All,Manager.instance.GetTurretToBuild()); 
+	
+		//BuildTurret(Manager.instance.GetTurretToBuild());
 	}
 
-	void BuildTurret(TurretBlueprint blueprint)
+	[PunRPC]
+	private void RPC_BuildTurret(TurretBlueprint blueprint)
 	{
 		if(PlayerStats.Money<blueprint.cost)
 		{
@@ -95,7 +99,8 @@ public class Node : MonoBehaviour {
 	{
 		if (!buildManager.CanBuild)
 			return;
-		
+		if (tag != MotherScript.Instance.currentGameSide.ToString())
+			return;
 		rend.material.color = hoverColor;
 	}
 

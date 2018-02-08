@@ -15,18 +15,18 @@ public class Shop : MonoBehaviour {
 		
 	public void SelectStdTurret()
 	{
-		Debug.Log ("StdTurret Selected");
+		//Debug.Log ("StdTurret Selected");
 		buildManager.SelectTurretToBuild (stdTurret);
 	}
 
 	public void SelectMisTurret()
 	{
-		Debug.Log ("MisTurret Selected");
+		//Debug.Log ("MisTurret Selected");
 		buildManager.SelectTurretToBuild (misTurret);
 	}
 	public void SelectLasTurret()
 	{
-		Debug.Log ("LasTurret Selected");
+		//Debug.Log ("LasTurret Selected");
 		buildManager.SelectTurretToBuild (lasTurret);
 	}
 }
