@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
-public class Node : MonoBehaviour {
+public class Node : Photon.MonoBehaviour {
 
 	public Color hoverColor;
 	public Vector3 positionOffset;
@@ -14,6 +19,7 @@ public class Node : MonoBehaviour {
 	private Renderer rend;
 	private Color startColor;
 
+	private PhotonView PhotonView;
 	Manager buildManager;
 
 	void Start()
@@ -44,7 +50,7 @@ public class Node : MonoBehaviour {
 
 		if (!buildManager.CanBuild)
 			return;
-		//photonView.RPC ("RPC_BuildTurret", PhotonTargets.All,Manager.instance.GetTurretToBuild()); 
+		photonView.RPC ("RPC_BuildTurret", PhotonTargets.All,Manager.instance.GetTurretToBuild()); 
 	
 		//BuildTurret(Manager.instance.GetTurretToBuild());
 	}
@@ -60,7 +66,8 @@ public class Node : MonoBehaviour {
 
 		PlayerStats.Money -= blueprint.cost;
 
-		GameObject _turret = (GameObject)Instantiate (blueprint.prefabs, GetBuildPosition (), Quaternion.identity);
+		GameObject _turret =  PhotonNetwork.Instantiate (blueprint.prefabs.name, GetBuildPosition (), Quaternion.identity, 0) as GameObject;
+		//GameObject _turret = (GameObject)Instantiate (blueprint.prefabs, GetBuildPosition (), Quaternion.identity);
 		turret = _turret;
 
 		turretBlueprint = blueprint;

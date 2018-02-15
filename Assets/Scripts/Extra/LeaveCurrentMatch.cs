@@ -8,7 +8,8 @@ public class LeaveCurrentMatch : MonoBehaviour {
 		PhotonNetwork.LeaveRoom ();
 		PlayerNetwork.Instance.joinRoomNum = 0;
 		PlayerNetwork.Instance.PlayersInGame = 0;
-		PhotonNetwork.LoadLevel (2);
 		MotherScript.Instance.currentGameMode = 0;
+		LobbyChat.Instance.chatClient.Disconnect ();
+		PhotonNetwork.LoadLevel (2);
 	}
 }
