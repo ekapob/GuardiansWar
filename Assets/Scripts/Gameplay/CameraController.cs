@@ -11,6 +11,9 @@ public class CameraController : Photon.MonoBehaviour {
 	public float minY = 10f;
 	public float maxY = 80f;
 	private PhotonView PhotonView;
+	public bool UseTransformView = true;
+	private Vector3 TargetPosition;
+	private Quaternion TargetRotation;
 
 	void Start (){
 		PhotonView = GetComponent<PhotonView> ();
@@ -54,7 +57,25 @@ public class CameraController : Photon.MonoBehaviour {
 		transform.position = pos;
 	}
 
-
+	private void SmoothMove(){
+		if (UseTransformView) {
+			return;
+		}
+		transform.position = Vector3.Lerp (transform.position, TargetPosition, 0.25f);
+		transform.rotation = Quaternion.RotateTowards (transform.rotation, TargetRotation, 500 * Time.deltaTime);
+	}
+	private void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info){
+		if (UseTransformView) {
+			return;
+		}
+		if (stream.isWriting) {
+			stream.SendNext (transform.position);
+			stream.SendNext (transform.rotation);
+		} else {
+			TargetPosition = (Vector3)stream.ReceiveNext ();
+			TargetRotation = (Quaternion)stream.ReceiveNext ();
+		}
+	}
 
 
 	[PunRPC]

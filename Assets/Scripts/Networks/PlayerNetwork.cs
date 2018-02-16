@@ -46,6 +46,14 @@ public class PlayerNetwork : MonoBehaviour {
 				NonMasterLoadedGamePlay ();
 			}
 		}
+		//test TD
+		if (scene.name == "GameplayTest") {
+			if (PhotonNetwork.isMasterClient) {
+				MasterLoadedGamePlay ();
+			} else {
+				NonMasterLoadedGamePlay ();
+			}
+		}
 	}
 
 	private void Update(){
