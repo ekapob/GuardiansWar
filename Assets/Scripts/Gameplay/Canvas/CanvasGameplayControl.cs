@@ -15,7 +15,8 @@ public class CanvasGameplayControl : MonoBehaviour {
 		Instance = this;
 		allPlayerInGame = PhotonNetwork.playerList.Length;
 		standbyCam.SetActive (true);
-		if (allPlayerInGame == 2){
+		//scenetest
+		/*if (allPlayerInGame == 2){
 			NodeControlForPlayer.Instance.playerNodeK2.SetActive (true);
 			P1Spawner.Instance.enabled = false;
 			NodeControlForPlayer.Instance.playerNodeM1.SetActive (true);
@@ -26,7 +27,7 @@ public class CanvasGameplayControl : MonoBehaviour {
 			NodeControlForPlayer.Instance.playerNodeM1.SetActive (true);
 			NodeControlForPlayer.Instance.playerNodeK1.SetActive (true);
 			NodeControlForPlayer.Instance.playerNodeM2.SetActive (true);
-		}
+		}*/
 	}
 	
 	// Update is called once per frame

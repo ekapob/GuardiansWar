@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class Node : Photon.MonoBehaviour {
+public class Node : MonoBehaviour {
 
 	public Color hoverColor;
 	public Vector3 positionOffset;
@@ -19,7 +19,6 @@ public class Node : Photon.MonoBehaviour {
 	private Renderer rend;
 	private Color startColor;
 
-	private PhotonView PhotonView;
 	Manager buildManager;
 
 	void Start()
@@ -29,7 +28,6 @@ public class Node : Photon.MonoBehaviour {
 
 		rend = GetComponent<Renderer> ();
 		startColor = rend.material.color;
-		PhotonView = GetComponent<PhotonView> ();
 	}
 
 	public Vector3 GetBuildPosition()
@@ -50,7 +48,6 @@ public class Node : Photon.MonoBehaviour {
 
 		if (!buildManager.CanBuild)
 			return;
-		photonView.RPC ("RPC_BuildTurret", PhotonTargets.All,Manager.instance.GetTurretToBuild()); 
 	
 		//BuildTurret(Manager.instance.GetTurretToBuild());
 	}

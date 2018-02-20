@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController : Photon.MonoBehaviour {
 
+	public static CameraController Instance;
 	private bool doMovement = true;
 	public float panSpeed = 30f;
 	public float panBorderThickness = 10f;
@@ -14,11 +15,16 @@ public class CameraController : Photon.MonoBehaviour {
 	public bool UseTransformView = true;
 	private Vector3 TargetPosition;
 	private Quaternion TargetRotation;
+	private GameObject turretToBuildx; // prefab of tower need to add more
+	public GameObject standardTurretPrefabx;
+	public int currentClickNode;
 
 	void Start (){
+		Instance = this;
 		PhotonView = GetComponent<PhotonView> ();
 		CanvasGameplayControl.Instance.loadingImg.SetActive (false);
 		photonView.RPC ("RPC_SendSideGameplay",PhotonTargets.All);
+		turretToBuildx = standardTurretPrefabx;
 	}
 	void Update ()
 	{
@@ -83,23 +89,40 @@ public class CameraController : Photon.MonoBehaviour {
 		//Bug
 		CanvasGameplayControl.Instance.sidePlayer[MotherScript.Instance.currentGameSide]++;
 	}
-
-	/*[PunRPC]
-	private void RPC_BuildTurret(TurretBlueprint blueprint)
-	{
-		if(PlayerStats.Money<blueprint.cost)
-		{
-			Debug.Log ("Not enough gold!");
-			return;
+		
+	public void CreateTower(){
+		if (PlayerNetwork.Instance.joinRoomNum == 1) {
+			if (currentClickNode == 0) {
+				photonView.RPC ("RPC_CreateTowerP1_0", PhotonTargets.All);
+			} else if (currentClickNode == 1) {
+				photonView.RPC ("RPC_CreateTowerP1_1", PhotonTargets.All);
+			}
 		}
+		else if (PlayerNetwork.Instance.joinRoomNum == 2) {
+			if (currentClickNode == 0) {
+				photonView.RPC ("RPC_CreateTowerP2_0", PhotonTargets.All);
+			} else if (currentClickNode == 1) {
+				photonView.RPC ("RPC_CreateTowerP2_1", PhotonTargets.All);
+			}
+		}
+	}
 
-		PlayerStats.Money -= blueprint.cost;
+	[PunRPC]
+	private void RPC_CreateTowerP1_0(){
+		Instantiate (turretToBuildx, TestNode1.Instance.node[0].transform.position, TestNode1.Instance.node[0].transform.rotation);
+	}
+	[PunRPC]
+	private void RPC_CreateTowerP1_1(){
+		Instantiate (turretToBuildx, TestNode1.Instance.node[1].transform.position, TestNode1.Instance.node[1].transform.rotation);
+	}
 
-		GameObject _turret = (GameObject)Instantiate (blueprint.prefabs,  GetBuildPosition (), Quaternion.identity);
-		turret = _turret;
-
-		turretBlueprint = blueprint;
-
-		Debug.Log (PlayerStats.Money);
-	}*/
+	[PunRPC]
+	private void RPC_CreateTowerP2_0(){
+		Instantiate (turretToBuildx, TestNode2.Instance.node[0].transform.position, TestNode2.Instance.node[0].transform.rotation);
+	}
+	[PunRPC]
+	private void RPC_CreateTowerP2_1(){
+		Instantiate (turretToBuildx, TestNode2.Instance.node[1].transform.position, TestNode2.Instance.node[1].transform.rotation);
+	}
+		
 }
