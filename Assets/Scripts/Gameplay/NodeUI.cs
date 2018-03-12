@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class NodeUI : MonoBehaviour {
 
 	public GameObject ui;
-	public Node target;
+	private Node target;
 
 	public Text upgradeCost;
 	public Button upgradeButton;
