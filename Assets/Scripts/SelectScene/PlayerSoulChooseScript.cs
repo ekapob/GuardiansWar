@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 
+	public static PlayerSoulChooseScript Instance;
 	private int mode = 0;
 	private int sidepick = 0;
 	[SerializeField]
@@ -19,6 +21,7 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	private void Awake () {
+		Instance = this;
 		burn.SetActive (m_bombStat);
 		moveAble = true;
 		PhotonView = GetComponent<PhotonView> ();
@@ -107,7 +110,10 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 		transform.Rotate (new Vector3(0,0,0));
 		moveAble = true;
 		CanvasGameButton.Instance.timer = 10f;
-
+		CanvasGameButton.Instance.mode1But.gameObject.SetActive (false);
+		CanvasGameButton.Instance.mode2But.gameObject.SetActive (false);
+		CanvasGameButton.Instance.kniBut.gameObject.SetActive (true);
+		CanvasGameButton.Instance.monBut.gameObject.SetActive (true);
 	}
 
 	//Transfer data
@@ -122,6 +128,14 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 			TargetPosition = (Vector3)stream.ReceiveNext ();
 			TargetRotation = (Quaternion)stream.ReceiveNext ();
 		}
+	}
+
+	public void ClickMode1(){
+		photonView.RPC ("RPC_OnClickMode1", PhotonTargets.All); 
+	}
+
+	public void ClickMode2(){
+		photonView.RPC ("RPC_OnClickMode2", PhotonTargets.All); 
 	}
 
 	[PunRPC] 
@@ -150,7 +164,19 @@ public class PlayerSoulChooseScript : Photon.MonoBehaviour {
 		side = CanvasGameButton.Instance.side [PlayerNetwork.Instance.joinRoomNum - 1];
 	}
 
+	[PunRPC]
+	private void RPC_OnClickMode1(){
+		CanvasGameButton.Instance.modePrintTxt.text = "Mode : KilL'a BosSSS";
+		mode = 1;
+		CanvasGameButton.Instance.timer = 3f;
+	}
 
+	[PunRPC]
+	private void RPC_OnClickMode2(){
+		CanvasGameButton.Instance.modePrintTxt.text = "Mode : Ah Base is on FIRE";
+		mode = 2;
+		CanvasGameButton.Instance.timer = 3f;
+	}
 
 
 }

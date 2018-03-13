@@ -26,11 +26,19 @@ public class CanvasGameButton : MonoBehaviour {
 	public int playMode;// 1 : Ah Base is on FIRE | 2 : KilL'a BosSSS
 	public int playSide;// 1 : Knight | 2 : Monster
 	public int[] side;
+	public bool clickModeState;
+	public Text modePrintTxt;
+	public Button mode1But;
+	public Button mode2But;
+	public Button kniBut;
+	public Button monBut;
+
 
 	// Use this for initialization
 	void Awake () {
+		clickModeState = true;
 		side = new int[PhotonNetwork.playerList.Length];
-		clockCount.text = timeToStr.ToString ();	
+		clockCount.text = timeToStr.ToString ();
 		pause = false;
 		allButton.SetActive (false);
 		Instance = this;
@@ -67,8 +75,25 @@ public class CanvasGameButton : MonoBehaviour {
 		pause = false;
 	}
 
+	public void OnClickMode1(){
+		if(clickModeState && PhotonNetwork.isMasterClient){
+			PlayerSoulChooseScript.Instance.ClickMode1 ();
+			mode1But.interactable = false;
+			mode2But.interactable = false;
+			clickModeState = false;
+		}
+	}
+	public void OnClickMode2(){
+		if (clickModeState && PhotonNetwork.isMasterClient) {
+			PlayerSoulChooseScript.Instance.ClickMode2 ();
+			mode1But.interactable = false;
+			mode2But.interactable = false;
+			clickModeState = false;
+		}
+	}
+
 	public void CalculateMode(){
-		if (mode [1] > mode [2]) {
+		/*if (mode [1] > mode [2]) {
 			playMode = 1;
 		} else if (mode [1] < mode [2]) {
 			playMode = 2;
@@ -79,7 +104,7 @@ public class CanvasGameButton : MonoBehaviour {
 			} else {
 				playMode = 2;
 			}
-		}
+		}*/
 	}
 
 
@@ -91,7 +116,7 @@ public class CanvasGameButton : MonoBehaviour {
 
 	public void CalculateSide(){
 		//int[] use = new int[PhotonNetwork.playerList.Length];
-		int side1 = 0;
+		/*int side1 = 0;
 		int side2 = 0;
 		int side0 = 0;
 		bool toGameScene = false;
@@ -132,6 +157,6 @@ public class CanvasGameButton : MonoBehaviour {
 				}
 			}
 
-		}
+		}*/
 	}
 }
