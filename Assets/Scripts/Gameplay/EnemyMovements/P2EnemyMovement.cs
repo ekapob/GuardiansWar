@@ -48,6 +48,6 @@ public class P2EnemyMovement : MonoBehaviour {
 
 	void WarpToMidLane()
 	{
-		this.transform.position = Manager.instance.t1MidStart.transform.position;
+		this.transform.position = Manager.instance.t2MidStart.transform.position;
 	}
 }
